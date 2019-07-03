@@ -12,5 +12,4 @@ public class MazeApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }

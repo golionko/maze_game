@@ -39,7 +39,15 @@
                 </nav>
             </div>
         </div>
+        <section>
+            <h1>Room Data:</h1>
+            <p>Location: (${labyrinthRoom.XLocation}, ${labyrinthRoom.YLocation}, ${labyrinthRoom.ZLocation})</p>
+            <p>Origin: (${labyrinthRoom.XOrigin}, ${labyrinthRoom.YOrigin}, ${labyrinthRoom.ZOrigin})</p>
+            <p>Color: ${labyrinthRoom.roomColor}</p>
+        </section>
     </header>
+
+
 
     <footer>
 
