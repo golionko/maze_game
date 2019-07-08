@@ -1,11 +1,15 @@
 package com.game.maze.persist.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.game.maze.model.LabyrinthRoomColor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -14,15 +18,15 @@ import javax.persistence.*;
 @Table(name = "labyrinth_room")
 public class LabyrinthRoom {
 
-    public LabyrinthRoom(Long labyrinthId, LabyrinthRoomColor roomColor, int x, int y, int z) {
+    public LabyrinthRoom(Long labyrinthId, LabyrinthRoomColor roomColor, long x, long y, long z) {
         this.labyrinthId = labyrinthId;
         this.roomColor = roomColor;
-        this.xOrigin = new Long(x);
-        this.yOrigin = new Long(y);
-        this.zOrigin = new Long(z);
-        this.xLocation = new Long(x);
-        this.yLocation = new Long(y);
-        this.zLocation = new Long(z);
+        this.xOrigin = x;
+        this.yOrigin = y;
+        this.zOrigin = z;
+        this.xLocation = x;
+        this.yLocation = y;
+        this.zLocation = z;
     }
 
     @Id
@@ -48,4 +52,8 @@ public class LabyrinthRoom {
     @Column(name = "z_location")
     private Long zLocation;
 
+    @OneToMany(mappedBy = "roomId", fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
+    private Set<Avatar> avatars;
 }

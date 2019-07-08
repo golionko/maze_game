@@ -38,3 +38,21 @@ create table labyrinth_room
   room_color varchar(100),
   constraint fk_labyrinth_room_labyrinth_id foreign key(labyrinth_id) references labyrinth(id)
 );
+
+create table avatar
+(
+  id int not null primary key auto_increment,
+  user_id int not null,
+  name varchar(255) not null,
+  xp int not null default 0,
+  level int not null default 0,
+  strength int not null default 0,
+  dexterity int not null default 0,
+  luck int not null default 0,
+  constitution int not null default 0,
+  hp int not null default 0,
+  energy int not null default 0,
+  labyrinth_room_id int not null,
+  constraint fk_avatar_labyrinth_room foreign key(labyrinth_room_id) references labyrinth_room(id),
+  constraint fk_avatar_users foreign key(user_id) references users(id)
+);

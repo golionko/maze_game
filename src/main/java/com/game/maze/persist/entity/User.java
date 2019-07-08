@@ -28,4 +28,9 @@ public class User {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Set<Authority> authorities;
+
+    @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Set<Avatar> avatars;
 }
