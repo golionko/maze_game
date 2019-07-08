@@ -41,9 +41,9 @@
         </div>
         <section>
             <h1>Room Data:</h1>
-            <p>Location: (${labyrinthRoom.XLocation}, ${labyrinthRoom.YLocation}, ${labyrinthRoom.ZLocation})</p>
-            <p>Origin: (${labyrinthRoom.XOrigin}, ${labyrinthRoom.YOrigin}, ${labyrinthRoom.ZOrigin})</p>
-            <p>Color: ${labyrinthRoom.roomColor}</p>
+            <p>Location: (${roomView.room.XLocation}, ${roomView.room.YLocation}, ${roomView.room.ZLocation})</p>
+            <p>Origin: (${roomView.room.XOrigin}, ${roomView.room.YOrigin}, ${roomView.room.ZOrigin})</p>
+            <p>Color: ${roomView.room.roomColor}</p>
         </section>
     </header>
 

@@ -1,5 +1,8 @@
 package com.game.maze.controller;
 
+import com.game.maze.persist.repository.AvatarRepository;
+import com.game.maze.persist.repository.LabyrinthRoomRepository;
+import com.game.maze.service.AvatarService;
 import com.game.maze.service.LabyrinthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
 
     @Autowired
-    LabyrinthService labyrinthService;
+    AvatarService avatarService;
+    @Autowired
+    LabyrinthRoomRepository labyrinthRoomRepository;
+    @Autowired
+    AvatarRepository avatarRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String init(Model model){
 
-        model.addAttribute("labyrinthRoom",labyrinthService.getLabyrinthRoomByLocation(1,2,3));
+        model.addAttribute("roomView",avatarService.getRoomViewForRoomAndAvatar(labyrinthRoomRepository.getOne(1L),avatarRepository.getOne(1L)));
         return "index";
     }
 }
