@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface LabyrinthRepository extends JpaRepository<Labyrinth, Long> {
 
-    @Query(value = "SELECT size FROM labyrunth WHERE id = ?1",
+    @Query(value = "SELECT size FROM labyrinth WHERE id = ?1",
             nativeQuery = true)
     Long findSizeById(Long id);
 }

@@ -26,6 +26,6 @@ public class Avatar {
     private Long constitution;
     private Long hp;
     private Long energy;
-    @Column(name = "room_id")
+    @Column(name = "labyrinth_room_id")
     private Long roomId;
 }

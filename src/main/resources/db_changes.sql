@@ -56,3 +56,6 @@ create table avatar
   constraint fk_avatar_labyrinth_room foreign key(labyrinth_room_id) references labyrinth_room(id),
   constraint fk_avatar_users foreign key(user_id) references users(id)
 );
+
+insert into avatar (id, user_id, name, xp, level, strength, dexterity, luck, constitution, hp, energy, labyrinth_room_id) VALUES
+(1, 1, 'Anton Avatar', 1 , 1 , 1, 1, 1, 1, 1, 1, 2);
