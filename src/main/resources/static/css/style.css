@@ -1,149 +1,119 @@
-
-.right{
-    float: right;
+body {
+    margin: 0 auto;
+    font-family: Arial;
 }
 
-.left{
-    float: left;
+/***********************************************************************
+*  Nav Bar
+**********************************************************************/
+
+header {
+    display: flex;
+    background-color: grey;
 }
 
-body{
-    font-family: ProximaNovaRegular, arial;
-    background: #c2c2c2;
-    box-sizing: border-box;
-    color: #444444;
+header nav {
     width:100%;
 }
 
-
-nav li {
-    display: block;
-    transition-duration: 0.5s;
-    position: relative;
-}
-
-nav li:hover {
-    cursor: pointer;
-}
-
-nav ul li ul {
-    visibility: hidden;
-    opacity: 0;
-    position: absolute;
-    transition: all 0.5s ease;
-    left: 0;
-    background-color: #fff;
-    border-radius: 5px;
-    z-index: 200;
-    padding: 10px 0px;
-    box-shadow: 0 0 18px 0 rgba(0,0,0,0.20);
-}
-
-nav ul li:hover > ul,
-nav ul li:focus-within > ul,
-nav ul li ul:hover {
-    visibility: visible;
-    opacity: 1;
-    display: block;
-}
-
-nav ul li ul li {
-    clear: both;
-    width: 170px;
-    padding:0px 10px;
-}
-
-.top-nav nav ul li ul li a{
-    color: #232A2E;
-    width: 100%;
-    display: inline-block;
-    padding:0px 10px;
-    line-height: 34px;
-    border-radius: 5px;
-    font-family: ProximaNovabold, arial;
-}
-
-.top-nav nav ul li ul li a:hover{
-    background-color: #EBF2F7;
-}
-
-.top-nav nav ul li ul li.sub{
-    text-indent: 5px;
-}
-
-.top-nav nav ul li ul li.sub a{
-    font-family: ProximaNovaLight, arial;
-}
-
-.container{
-    width: 1200px;
-    margin: 0px auto;
-    position: relative;
-}
-
-header {
-    float: left;
-    width: 100%;
-    height: 800px;
-    overflow: hidden;
-}
-
-footer {
-    float: left;
-    width: 100%;
+header .logo{
+    margin:5px;
+    width: 50px;
     height: 50px;
-    background-color: #232A2E;
-}
-
-.top-nav{
-    float: left;
-    width: 100%;
-    background-color: #232A2E;
-}
-
-.top-nav nav{
-    float: right;
-}
-
-.top-nav nav a{
-    color: #fff;
-    text-decoration: none;
-    line-height: 40px;
-    margin-right: 40px;
-}
-
-.top-nav nav a.sign-in{
-    border:1px solid #fff;
-    padding:10px 20px;
-    border-radius: 20px;
-    margin-right: 35px;
-}
-
-.top-nav nav a.locale{
-    margin-right: 0px;
-}
-
-.top-nav nav a.locale b, .mobile-nav a.locale b{
-    width: 17px;
-    height: 12px;
-    display: inline-block;
-    margin-right: 15px;
-}
-
-.top-nav nav ul{
-    float: left;
-}
-
-.top-nav nav ul li{
-    float: left;
-}
-
-.top-nav .logo{
-    margin-top:10px;
-    width: 80px;
-    height: 50px;
-    float: left;
     background-image: url(../images/logo.jpg);
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+header .main-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+@media only screen and (max-width: 600px) {
+    header .main-nav {
+        font-size: 0.7em;
+        padding: 0;
+    }
+}
+
+.push {
+    margin-left: auto;
+    align-self: flex-end;
+    margin-right: 50px;
+}
+
+li {
+    padding: 20px;
+}
+
+a {
+    color: #f5f5f6;
+    text-decoration: none;
+}
+
+
+/***********************************************************************
+*  container
+**********************************************************************/
+
+.container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 300px 1fr 1fr 1fr 200px;
+    grid-gap: 5px;
+    grid-template-areas:
+            "sidebar-left . north up sidebar-right"
+            "sidebar-left west in east sidebar-right"
+            "sidebar-left down south . sidebar-right";
+}
+
+.room{
+    background-color: darkgray;
+    padding: 15px;
+}
+
+.sidebar-left {
+    background-color: grey;
+    grid-area: sidebar-left;
+}
+
+.sidebar-right {
+    background-color: grey;
+    grid-area: sidebar-right;
+}
+
+.room-up{
+    grid-area: up;
+}
+.room-north{
+    grid-area: north;
+}
+.room-west{
+    grid-area: west;
+}
+.room-east{
+    grid-area: east;
+}
+.room-down{
+    grid-area: down;
+}
+
+.room-south{
+    grid-area: south;
+}
+
+.room-in{
+    grid-area: in;
+}
+
+footer {
+    padding-top: 10px;
+    height: 20px;
+    width: 100%;
+    background-color: grey;
 }

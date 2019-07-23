@@ -1,6 +1,5 @@
 package com.game.maze.model.view;
 
-import com.game.maze.model.Direction;
 import com.game.maze.persist.entity.Avatar;
 import com.game.maze.persist.entity.LabyrinthRoom;
 import lombok.Data;
@@ -12,6 +11,6 @@ import java.util.Map;
 public class RoomView {
     private Long avatarId;
     private LabyrinthRoom room;
-    Map<Direction,LabyrinthRoom> surroundingRooms;
+    Map<String,LabyrinthRoom> surroundingRooms;
     List<Avatar> avatars;
 }

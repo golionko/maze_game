@@ -40,10 +40,7 @@
             </div>
         </div>
         <section>
-            <h1>Room Data:</h1>
-            <p>Location: (${roomView.room.XLocation}, ${roomView.room.YLocation}, ${roomView.room.ZLocation})</p>
-            <p>Origin: (${roomView.room.XOrigin}, ${roomView.room.YOrigin}, ${roomView.room.ZOrigin})</p>
-            <p>Color: ${roomView.room.roomColor}</p>
+            <a href="/avatar/1" class="logo">To Room</a>
         </section>
     </header>
 

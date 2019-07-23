@@ -42,12 +42,12 @@ public class AvatarService {
         RoomView roomView = new RoomView();
         roomView.setAvatarId(avatar.getId());
         roomView.setRoom(room);
-        Map<Direction,LabyrinthRoom> surroundingRooms = new HashMap<>();
+        Map<String,LabyrinthRoom> surroundingRooms = new HashMap<>();
         for(Direction direction: Direction.values()){
-            surroundingRooms.put(direction,labyrinthService.getRoomInDirection(room,direction));
+            surroundingRooms.put(direction.toString(),labyrinthService.getRoomInDirection(room,direction));
         }
         roomView.setSurroundingRooms(surroundingRooms);
-
+        roomView.setAvatars(avatarRepository.findAllByRoomId(room.getId()));
         return roomView;
     }
 }
