@@ -1,5 +1,6 @@
 package com.game.maze.controller;
 
+import com.game.maze.helper.LevelUpHelper;
 import com.game.maze.model.Direction;
 import com.game.maze.persist.entity.Avatar;
 import com.game.maze.persist.repository.AvatarRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,4 +38,34 @@ public class AvatarController {
         model.addAttribute("roomView", avatarService.getRoomViewForRoomAndAvatar(labyrinthRoomRepository.getOne(avatar.getRoomId()),avatar));
         return "room_view";
     }
+
+    @RequestMapping(value = "/avatar", method = RequestMethod.POST)
+    public String createAvatar(Model model, @RequestBody Avatar avatar){
+        avatarRepository.save(avatar);
+        model.addAttribute("roomView", avatarService.getRoomViewForRoomAndAvatar(labyrinthRoomRepository.getOne(avatar.getRoomId()),avatar));
+        return "room_view";
+    }
+
+    @RequestMapping(value = "/avatar/{id}", method = RequestMethod.PUT)
+    String updateAvatar(Model model, @RequestBody Avatar updatedAvatar, @PathVariable Long id) {
+
+        Avatar avatar =  avatarRepository.findById(id)
+                .map(a -> {
+                    a.setName(updatedAvatar.getName());
+                    a.setXp(updatedAvatar.getXp());
+                    a.setLevel(LevelUpHelper.calculateLevel(updatedAvatar.getXp().longValue()));
+                    a.setStrength(updatedAvatar.getStrength());
+                    a.setDexterity(updatedAvatar.getDexterity());
+                    a.setLuck(updatedAvatar.getLuck());
+                    a.setConstitution(updatedAvatar.getConstitution());
+                    a.setHp(updatedAvatar.getHp());
+                    a.setEnergy(updatedAvatar.getEnergy());
+                    a.setRoomId(updatedAvatar.getRoomId());
+                    return avatarRepository.save(a);
+                })
+                .orElseThrow(() -> new RuntimeException("Avatar to update could not be found"));
+        model.addAttribute("roomView", avatarService.getRoomViewForRoomAndAvatar(labyrinthRoomRepository.getOne(avatar.getRoomId()),avatar));
+        return "room_view";
+    }
+
 }
