@@ -25,16 +25,20 @@ public class AvatarService {
     @Autowired
     LabyrinthRepository labyrinthRepository;
 
+    private final static long MOVEMENT_COST = 5;
+
     public RoomView moveAvatar(Long avatarId, Direction direction){
         Avatar avatar = avatarRepository.getOne(avatarId);
         LabyrinthRoom room = labyrinthRoomRepository.getOne(avatar.getRoomId());
-        LabyrinthRoom newRoom = labyrinthService.getRoomInDirection(room,direction);
-        if(newRoom != null){
-            avatar.setRoomId(newRoom.getId());
-            avatarRepository.save(avatar);
-            room = newRoom;
+        if(avatar.getHp() > 0 && avatar.getMaxEnergy() - avatar.getEnergy() >= MOVEMENT_COST) {
+            LabyrinthRoom newRoom = labyrinthService.getRoomInDirection(room, direction);
+            if (newRoom != null) {
+                avatar.setRoomId(newRoom.getId());
+                avatar.setEnergy(avatar.getEnergy() - MOVEMENT_COST);
+                avatarRepository.save(avatar);
+                room = newRoom;
+            }
         }
-
         return getRoomViewForRoomAndAvatar(room,avatar);
     }
 

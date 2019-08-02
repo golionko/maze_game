@@ -25,7 +25,11 @@ public class Avatar {
     private Long luck;
     private Long constitution;
     private Long hp;
+    @Column(name = "max_hp")
+    private Long maxHp;
     private Long energy;
+    @Column(name = "max_energy")
+    private Long maxEnergy;
     @Column(name = "labyrinth_room_id")
     private Long roomId;
 }
