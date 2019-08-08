@@ -5,20 +5,28 @@
     <#include "./partials/header.ftl">
     <div class ="container">
         <div class="sidebar-left">
-            <h2>Character Stats:</h2>
-            <p>User Id: ${roomView.avatar.id}</p>
-            <p>Name: ${roomView.avatar.name}</p>
-            <p>XP: ${roomView.avatar.xp}</p>
-            <p>HP: ${roomView.avatar.hp}</p>
-            <p>Energy: ${roomView.avatar.energy}</p>
-            <p>Level: ${roomView.avatar.level}</p>
-            <p>Strength: ${roomView.avatar.strength}</p>
-            <p>Dexterity: ${roomView.avatar.dexterity}</p>
-            <p>Luck: ${roomView.avatar.luck}</p>
-            <p>Constitution: ${roomView.avatar.constitution}</p>
-
+            <div style="margin:10px; padding:10px; background-color: bisque">
+                <h2><b>Character Stats:</b></h2>
+                <p>User Id: ${roomView.avatar.id}</p>
+                <p>Name: ${roomView.avatar.name}</p>
+                <p>XP: ${roomView.avatar.xp}</p>
+                <p>HP:</p>
+                <div style="width: 100%; background-color: green;">
+                    <div style="width: ${roomView.avatar.hp / roomView.avatar.maxHp * 100}%; height: 30px; background-color: red; text-align: center; line-height: 30px; color: white;"></div>
+                </div>
+                <p>Energy:</p>
+                <div style="width: 100%; background-color: green;">
+                    <div style="width: ${roomView.avatar.energy / roomView.avatar.maxEnergy * 100}%; height: 30px; background-color: blue; text-align: center; line-height: 30px; color: white;"></div>
+                </div>
+                <p>Level: ${roomView.avatar.level}</p>
+                <p>Strength: ${roomView.avatar.strength}</p>
+                <p>Dexterity: ${roomView.avatar.dexterity}</p>
+                <p>Luck: ${roomView.avatar.luck}</p>
+                <p>Constitution: ${roomView.avatar.constitution}</p>
+            </div>
         </div>
         <div class="sidebar-right">
+
         </div>
 
         <#assign gridRoom = roomView.room >
