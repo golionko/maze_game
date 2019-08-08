@@ -51,11 +51,14 @@ create table avatar
   luck int not null default 0,
   constitution int not null default 0,
   hp int not null default 0,
+  max_hp int not null,
   energy int not null default 0,
+  max_energy int not null,
   labyrinth_room_id int not null,
   constraint fk_avatar_labyrinth_room foreign key(labyrinth_room_id) references labyrinth_room(id),
   constraint fk_avatar_users foreign key(user_id) references users(id)
 );
 
-insert into avatar (id, user_id, name, xp, level, strength, dexterity, luck, constitution, hp, energy, labyrinth_room_id) VALUES
-(1, 1, 'Anton Avatar', 1 , 1 , 1, 1, 1, 1, 1, 1, 2);
+insert into avatar (id, user_id, name, xp, level, strength, dexterity, luck, constitution, hp, max_hp, energy, max_energy, labyrinth_room_id) VALUES
+(1, 1, 'Anton Avatar', 1 , 1 , 1, 1, 1, 1, 1, 100, 1, 100, 2);
+
