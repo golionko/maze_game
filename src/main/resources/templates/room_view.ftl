@@ -28,6 +28,18 @@
     <div class ="container">
 
         <div class="sidebar-left">
+            <h2>Character Stats:</h2>
+            <p>User Id: ${roomView.avatar.id}</p>
+            <p>Name: ${roomView.avatar.name}</p>
+            <p>XP: ${roomView.avatar.xp}</p>
+            <p>HP: ${roomView.avatar.hp}</p>
+            <p>Energy: ${roomView.avatar.energy}</p>
+            <p>Level: ${roomView.avatar.level}</p>
+            <p>Strength: ${roomView.avatar.strength}</p>
+            <p>Dexterity: ${roomView.avatar.dexterity}</p>
+            <p>Luck: ${roomView.avatar.luck}</p>
+            <p>Constitution: ${roomView.avatar.constitution}</p>
+
         </div>
 
         <div class="sidebar-right">
@@ -49,7 +61,7 @@
                 <p>Location: (${gridRoom.XLocation}, ${gridRoom.YLocation}, ${gridRoom.ZLocation})</p>
                 <p>Origin: (${gridRoom.XOrigin}, ${gridRoom.YOrigin}, ${gridRoom.ZOrigin})</p>
                 <p>Color: ${gridRoom.roomColor}</p>
-                <form method="post" action="/avatar/${roomView.avatarId}/move/${gridRoomKey}" class="inline">
+                <form method="post" action="/avatar/${roomView.avatar.id}/move/${gridRoomKey}" class="inline">
                     <button type="submit" class="link-button">
                         Move Here
                     </button>

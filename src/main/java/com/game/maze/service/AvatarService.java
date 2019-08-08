@@ -40,7 +40,7 @@ public class AvatarService {
 
     public RoomView getRoomViewForRoomAndAvatar(LabyrinthRoom room, Avatar avatar){
         RoomView roomView = new RoomView();
-        roomView.setAvatarId(avatar.getId());
+        roomView.setAvatar(avatar);
         roomView.setRoom(room);
         Map<String,LabyrinthRoom> surroundingRooms = new HashMap<>();
         for(Direction direction: Direction.values()){

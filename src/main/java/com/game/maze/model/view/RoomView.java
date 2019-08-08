@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Data
 public class RoomView {
-    private Long avatarId;
+    private Avatar avatar;
     private LabyrinthRoom room;
     Map<String,LabyrinthRoom> surroundingRooms;
     List<Avatar> avatars;
