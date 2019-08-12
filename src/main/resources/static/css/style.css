@@ -58,6 +58,16 @@ a {
 /***********************************************************************
 *  container
 **********************************************************************/
+.index-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 300px 3fr 200px;
+    grid-gap: 5px;
+    grid-template-areas:
+            "sidebar-left main-page sidebar-right";
+}
 
 .container {
     padding-top: 10px;
@@ -75,6 +85,11 @@ a {
 .room{
     background-color: darkgray;
     padding: 15px;
+}
+
+.main-page {
+    background-color: grey;
+    grid-area: main-page;
 }
 
 .sidebar-left {
@@ -116,4 +131,21 @@ footer {
     height: 20px;
     width: 100%;
     background-color: grey;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th {
+    text-align: left;
+}
+
+#avatars-table {
+    background-color: white;
+}
+
+#avatars-table a {
+    color: #9a47f6;
+    text-decoration: none;
 }

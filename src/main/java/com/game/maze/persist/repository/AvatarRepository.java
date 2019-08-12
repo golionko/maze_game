@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface AvatarRepository extends JpaRepository<Avatar, Long> {
     List<Avatar> findAllByRoomId(Long roomId);
+    List<Avatar> findAllByUserId(Long userId);
 }
