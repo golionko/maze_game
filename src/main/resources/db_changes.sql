@@ -62,3 +62,41 @@ create table avatar
 insert into avatar (id, user_id, name, xp, level, strength, dexterity, luck, constitution, hp, max_hp, energy, max_energy, labyrinth_room_id) VALUES
 (1, 1, 'Anton Avatar', 1 , 1 , 1, 1, 1, 1, 1, 100, 1, 100, 2);
 
+
+create table item
+(
+  id int not null primary key auto_increment,
+  item_type varchar(255) not null,
+  name varchar(255) not null,
+  description text not null
+);
+
+create table item_buff
+(
+  id int not null primary key auto_increment,
+  item_id int not null,
+  buff_type varchar(255) not null,
+  stat varchar(255) not null,
+  amount int not null default 0,
+  constraint fk_item_buff_item foreign key(item_id) references item(id)
+);
+
+create table avatar_item_inventory
+(
+  id int not null primary key auto_increment,
+  item_id int not null,
+  avatar_id int not null,
+  amount int not null default 0,
+  constraint fk_avatar_inventory_item foreign key(item_id) references item(id),
+  constraint fk_avatar_inventory_avatar foreign key(avatar_id) references avatar(id)
+);
+
+create table avatar_item_equipped
+(
+  id int not null primary key auto_increment,
+  item_id int not null,
+  avatar_id int not null,
+  body_part varchar(255) not null,
+  constraint fk_avatar_inventory_item foreign key(item_id) references item(id),
+  constraint fk_avatar_inventory_avatar foreign key(avatar_id) references avatar(id)
+);
