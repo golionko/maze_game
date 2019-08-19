@@ -18,10 +18,10 @@ public class AvatarItemInventory {
     private Long id;
 
     @Column(name = "item_id")
-    private String itemId;
+    private Long itemId;
 
     @Column(name = "avatar_id")
-    private String avatarId;
+    private Long avatarId;
 
     @Column(name = "amount")
     private Long amount;
