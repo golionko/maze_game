@@ -4,9 +4,7 @@ import com.game.maze.model.Direction;
 import com.game.maze.model.view.RoomView;
 import com.game.maze.persist.entity.Avatar;
 import com.game.maze.persist.entity.LabyrinthRoom;
-import com.game.maze.persist.repository.AvatarRepository;
-import com.game.maze.persist.repository.LabyrinthRepository;
-import com.game.maze.persist.repository.LabyrinthRoomRepository;
+import com.game.maze.persist.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +22,10 @@ public class AvatarService {
     LabyrinthRoomRepository labyrinthRoomRepository;
     @Autowired
     LabyrinthRepository labyrinthRepository;
+    @Autowired
+    AvatarItemEquippedRepository avatarItemEquippedRepository;
+    @Autowired
+    AvatarItemInventoryRepository avatarItemInventoryRepository;
 
     private final static long MOVEMENT_COST = 5;
 

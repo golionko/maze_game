@@ -24,6 +24,12 @@
                 <p>Luck: ${roomView.avatar.luck}</p>
                 <p>Constitution: ${roomView.avatar.constitution}</p>
             </div>
+            <div>
+                <h3>Equipped Items:</h3>
+                <#list roomView.avatar.equipped as equipment>
+                    <p>${equipment.item.name}</p>
+                </#list>
+            </div>
         </div>
         <div class="sidebar-right">
 

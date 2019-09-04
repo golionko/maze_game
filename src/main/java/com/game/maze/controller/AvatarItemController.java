@@ -4,6 +4,7 @@ import com.game.maze.persist.entity.Avatar;
 import com.game.maze.persist.entity.AvatarItemInventory;
 import com.game.maze.persist.repository.AvatarItemInventoryRepository;
 import com.game.maze.persist.repository.AvatarRepository;
+import com.game.maze.persist.repository.ItemRepository;
 import com.game.maze.persist.repository.LabyrinthRoomRepository;
 import com.game.maze.service.AvatarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class AvatarItemController {
     LabyrinthRoomRepository labyrinthRoomRepository;
     @Autowired
     AvatarRepository avatarRepository;
+    @Autowired
+    ItemRepository itemRepository;
 
     @RequestMapping(value = "/avatar/{id}/item/{itemId}", method = RequestMethod.POST)
     public String addItemToAvatar(Model model,
@@ -33,7 +36,7 @@ public class AvatarItemController {
                        @RequestParam(name="amount") Long amount){
         AvatarItemInventory avatarItemInventory = new AvatarItemInventory();
         avatarItemInventory.setAvatarId(id);
-        avatarItemInventory.setItemId(itemId);
+        avatarItemInventory.setItem(itemRepository.getOne(itemId));
         avatarItemInventory.setAmount(amount);
         return saveAndReturnRoomView(model, id, avatarItemInventory);
     }

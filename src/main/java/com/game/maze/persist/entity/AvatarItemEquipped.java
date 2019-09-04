@@ -18,11 +18,12 @@ public class AvatarItemEquipped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "item_id")
-    private String itemId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @MapsId
+    private Item item;
 
     @Column(name = "avatar_id")
-    private String avatarId;
+    private Long avatarId;
 
     @Column(name = "body_part")
     @Enumerated(EnumType.STRING)

@@ -17,8 +17,9 @@ public class AvatarItemInventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "item_id")
-    private Long itemId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @MapsId
+    private Item item;
 
     @Column(name = "avatar_id")
     private Long avatarId;
