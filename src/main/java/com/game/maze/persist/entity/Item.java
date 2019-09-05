@@ -1,6 +1,5 @@
 package com.game.maze.persist.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.game.maze.model.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +8,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Data
@@ -32,8 +31,9 @@ public class Item {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "itemId", fetch = FetchType.EAGER)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Set<ItemBuff> buffs;
+    @OneToMany(mappedBy = "item",
+            fetch = FetchType.EAGER,
+            cascade =  { CascadeType.ALL },
+            orphanRemoval = true)
+    private List<ItemBuff> buffs;
 }

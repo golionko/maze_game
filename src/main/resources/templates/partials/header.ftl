@@ -2,7 +2,7 @@
     <a href="#" class="logo"></a>
     <nav>
         <ul class="main-nav">
-            <li><a href="#">Link 1</a></li>
+            <li><a href="/admin/items">Admin-Items</a></li>
             <li><a href="#">Link 2</a></li>
             <li><a href="#">Link 3</a></li>
             <li><a href="#">Link 4</a></li>
