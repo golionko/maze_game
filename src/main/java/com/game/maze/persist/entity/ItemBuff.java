@@ -19,8 +19,9 @@ public class ItemBuff {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "item_id")
-    private String itemId;
+    @ManyToOne( fetch = FetchType.EAGER )
+    @JoinColumn(name = "item_id", nullable = false , referencedColumnName = "id")
+    private Item item;
 
     @Column(name = "buff_type")
     @Enumerated(EnumType.STRING)
