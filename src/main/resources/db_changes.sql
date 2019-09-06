@@ -100,3 +100,29 @@ create table avatar_item_equipped
   constraint fk_avatar_inventory_item foreign key(item_id) references item(id),
   constraint fk_avatar_inventory_avatar foreign key(avatar_id) references avatar(id)
 );
+
+create table creature
+(
+  id int not null primary key auto_increment,
+  name varchar(255) not null,
+  description text not null,
+  xp int not null default 0,
+  level int not null default 0,
+  strength int not null default 0,
+  dexterity int not null default 0,
+  luck int not null default 0,
+  constitution int not null default 0,
+  hp int not null default 0,
+  max_hp int not null,
+  energy int not null default 0,
+  max_energy int not null
+);
+
+create table labyrinth_room_creature
+(
+  id int not null primary key auto_increment,
+  creature_id int not null,
+  labyrinth_room_id int not null,
+  constraint fk_labyrinth_room_creature_labyrinth_room foreign key(labyrinth_room_id) references labyrinth_room(id),
+  constraint fk_labyrinth_room_creature foreign key(creature_id) references creature(id)
+);

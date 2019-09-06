@@ -1,6 +1,5 @@
 package com.game.maze.persist.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.game.maze.model.LabyrinthRoomColor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -54,6 +53,9 @@ public class LabyrinthRoom {
 
     @OneToMany(mappedBy = "roomId", fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
-    @JsonIgnore
     private Set<Avatar> avatars;
+
+    @OneToMany(mappedBy = "roomId", fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private Set<LabyrinthRoomCreature> creatures;
 }
