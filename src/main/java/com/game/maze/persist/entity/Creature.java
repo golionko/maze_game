@@ -29,6 +29,4 @@ public class Creature {
     private Long energy;
     @Column(name = "max_energy")
     private Long maxEnergy;
-    @Column(name = "labyrinth_room_id")
-    private Long roomId;
 }

@@ -32,7 +32,12 @@
             </div>
         </div>
         <div class="sidebar-right">
-
+            <div>
+                <h3>Creatures:</h3>
+                <#list roomView.creatures as creature>
+                    <p>${creature.name}</p>
+                </#list>
+            </div>
         </div>
 
         <#assign gridRoom = roomView.room >

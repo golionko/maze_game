@@ -4,28 +4,26 @@ import com.game.maze.model.Direction;
 import com.game.maze.model.view.RoomView;
 import com.game.maze.persist.entity.Avatar;
 import com.game.maze.persist.entity.LabyrinthRoom;
-import com.game.maze.persist.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.game.maze.persist.entity.LabyrinthRoomCreature;
+import com.game.maze.persist.repository.AvatarRepository;
+import com.game.maze.persist.repository.LabyrinthRoomCreatureRepository;
+import com.game.maze.persist.repository.LabyrinthRoomRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class AvatarService {
 
-    @Autowired
-    AvatarRepository avatarRepository;
-    @Autowired
-    LabyrinthService labyrinthService;
-    @Autowired
-    LabyrinthRoomRepository labyrinthRoomRepository;
-    @Autowired
-    LabyrinthRepository labyrinthRepository;
-    @Autowired
-    AvatarItemEquippedRepository avatarItemEquippedRepository;
-    @Autowired
-    AvatarItemInventoryRepository avatarItemInventoryRepository;
+    private final AvatarRepository avatarRepository;
+    private final LabyrinthService labyrinthService;
+    private final LabyrinthRoomRepository labyrinthRoomRepository;
+    private final LabyrinthRoomCreatureRepository labyrinthRoomCreatureRepository;
 
     private final static long MOVEMENT_COST = 5;
 
@@ -54,6 +52,8 @@ public class AvatarService {
         }
         roomView.setSurroundingRooms(surroundingRooms);
         roomView.setAvatars(avatarRepository.findAllByRoomId(room.getId()));
+        List<LabyrinthRoomCreature> creaturesInRoomList = labyrinthRoomCreatureRepository.findAllByRoomId(room.getId());
+        roomView.setCreatures(creaturesInRoomList.stream().map(LabyrinthRoomCreature::getCreature).collect(Collectors.toList()));
         return roomView;
     }
 }
