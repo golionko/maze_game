@@ -6,7 +6,7 @@ import com.game.maze.persist.entity.Avatar;
 import com.game.maze.persist.repository.AvatarRepository;
 import com.game.maze.persist.repository.LabyrinthRoomRepository;
 import com.game.maze.service.AvatarService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequiredArgsConstructor
 public class AvatarController {
 
-    @Autowired
-    AvatarService avatarService;
-    @Autowired
-    AvatarRepository avatarRepository;
-    @Autowired
-    LabyrinthRoomRepository labyrinthRoomRepository;
+    private final AvatarService avatarService;
+    private final AvatarRepository avatarRepository;
+    private final LabyrinthRoomRepository labyrinthRoomRepository;
 
     @RequestMapping(value = "/avatar/{id}/move/{direction}", method = RequestMethod.POST)
     public String init(Model model, @PathVariable(name = "id") Long id , @PathVariable(name = "direction") Direction direction){

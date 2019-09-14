@@ -7,7 +7,7 @@ import com.game.maze.persist.entity.Labyrinth;
 import com.game.maze.persist.entity.LabyrinthRoom;
 import com.game.maze.persist.repository.LabyrinthRepository;
 import com.game.maze.persist.repository.LabyrinthRoomRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,12 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class LabyrinthService {
 
-    @Autowired
-    LabyrinthRepository labyrinthRepository;
-    @Autowired
-    LabyrinthRoomRepository labyrinthRoomRepository;
+    private final LabyrinthRepository labyrinthRepository;
+    private final LabyrinthRoomRepository labyrinthRoomRepository;
 
     @Transactional
     public Labyrinth createLabyrinth(long size) {
@@ -40,9 +39,8 @@ public class LabyrinthService {
             }
         }
         labyrinth.setRooms(rooms);
-        labyrinthRepository.save(labyrinth);
 
-        return labyrinthRepository.findById(labyrinth.getId()).get();
+        return labyrinthRepository.save(labyrinth);
     }
 
     @Transactional
@@ -53,15 +51,11 @@ public class LabyrinthService {
         return labyrinthRepository.save(labyrinth);
     }
 
-    public LabyrinthRoom getLabyrinthRoomByLocation(long x, long y, long z){
+    private LabyrinthRoom getLabyrinthRoomByLocation(long x, long y, long z){
         return labyrinthRoomRepository.findByXLocationAndYLocationAndZLocation(x, y, z);
     }
 
-    public LabyrinthRoom getLabyrinthRoomByOrigin(long x, long y, long z){
-        return labyrinthRoomRepository.findByXOriginAndYOriginAndZOrigin(x, y, z);
-    }
-
-    public LabyrinthRoom getRoomInDirection(LabyrinthRoom room, Direction direction){
+    LabyrinthRoom getRoomInDirection(LabyrinthRoom room, Direction direction){
         Long size = labyrinthRepository.findSizeById(room.getLabyrinthId());
         switch(direction){
             case UP:

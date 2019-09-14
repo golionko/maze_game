@@ -29,7 +29,7 @@ public class AvatarService {
 
     private final static long MOVEMENT_COST = 5;
 
-    public RoomView moveAvatar(Long avatarId, Direction direction){
+    public void moveAvatar(Long avatarId, Direction direction){
         Avatar avatar = avatarRepository.getOne(avatarId);
         LabyrinthRoom room = labyrinthRoomRepository.getOne(avatar.getRoomId());
         if(avatar.getHp() > 0 && avatar.getMaxEnergy() - avatar.getEnergy() >= MOVEMENT_COST) {
@@ -38,10 +38,8 @@ public class AvatarService {
                 avatar.setRoomId(newRoom.getId());
                 avatar.setEnergy(avatar.getEnergy() - MOVEMENT_COST);
                 avatarRepository.save(avatar);
-                room = newRoom;
             }
         }
-        return getRoomViewForRoomAndAvatar(room,avatar);
     }
 
     public RoomView getRoomViewForRoomAndAvatar(LabyrinthRoom room, Avatar avatar){

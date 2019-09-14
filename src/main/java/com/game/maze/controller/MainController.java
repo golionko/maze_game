@@ -4,7 +4,7 @@ import com.game.maze.model.view.UserView;
 import com.game.maze.persist.entity.User;
 import com.game.maze.persist.repository.AvatarRepository;
 import com.game.maze.security.AppUserPrincipal;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequiredArgsConstructor
 public class MainController {
 
-    @Autowired
-    AvatarRepository avatarRepository;
+    private final AvatarRepository avatarRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String init(Model model){

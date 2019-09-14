@@ -4,7 +4,7 @@ public class LevelUpHelper {
     private static final double BASE_XP = 500;
     private static final double EXPONENT = 1.04f;
 
-    public static double calcXpForLevel(int level) {
+    private static double calcXpForLevel(int level) {
         return BASE_XP + (BASE_XP * Math.pow(level, EXPONENT));
     }
 

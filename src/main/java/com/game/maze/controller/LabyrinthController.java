@@ -2,7 +2,7 @@ package com.game.maze.controller;
 
 import com.game.maze.persist.entity.Labyrinth;
 import com.game.maze.service.LabyrinthService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequiredArgsConstructor
 public class LabyrinthController {
 
-    @Autowired
-    LabyrinthService labyrinthService;
+    private final LabyrinthService labyrinthService;
 
     @RequestMapping(value = "/labyrinth/create", method = RequestMethod.GET)
     public String init(Model model){

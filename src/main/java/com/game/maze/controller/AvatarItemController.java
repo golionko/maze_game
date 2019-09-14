@@ -7,7 +7,7 @@ import com.game.maze.persist.repository.AvatarRepository;
 import com.game.maze.persist.repository.ItemRepository;
 import com.game.maze.persist.repository.LabyrinthRoomRepository;
 import com.game.maze.service.AvatarService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,18 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequiredArgsConstructor
 public class AvatarItemController {
 
-    @Autowired
-    AvatarItemInventoryRepository avatarItemInventoryRepository;
-    @Autowired
-    AvatarService avatarService;
-    @Autowired
-    LabyrinthRoomRepository labyrinthRoomRepository;
-    @Autowired
-    AvatarRepository avatarRepository;
-    @Autowired
-    ItemRepository itemRepository;
+    private final AvatarItemInventoryRepository avatarItemInventoryRepository;
+    private final AvatarService avatarService;
+    private final LabyrinthRoomRepository labyrinthRoomRepository;
+    private final AvatarRepository avatarRepository;
+    private final ItemRepository itemRepository;
 
     @RequestMapping(value = "/avatar/{id}/item/{itemId}", method = RequestMethod.POST)
     public String addItemToAvatar(Model model,
