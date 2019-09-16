@@ -55,7 +55,7 @@ public class LabyrinthService {
         return labyrinthRoomRepository.findByXLocationAndYLocationAndZLocation(x, y, z);
     }
 
-    LabyrinthRoom getRoomInDirection(LabyrinthRoom room, Direction direction){
+    public LabyrinthRoom getRoomInDirection(LabyrinthRoom room, Direction direction){
         Long size = labyrinthRepository.findSizeById(room.getLabyrinthId());
         switch(direction){
             case UP:

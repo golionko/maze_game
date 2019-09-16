@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CreatureRepository extends JpaRepository<Creature, Long> {
 
+    List<Creature> findAllByLevelBefore(Long level);
 }
