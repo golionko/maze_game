@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -29,4 +30,7 @@ public class Creature {
     private Long energy;
     @Column(name = "max_energy")
     private Long maxEnergy;
+
+    @OneToMany(mappedBy = "creature", fetch = FetchType.LAZY)
+    private Set<LabyrinthRoomCreature> roomCreature;
 }
