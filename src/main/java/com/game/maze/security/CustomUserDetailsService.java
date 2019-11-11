@@ -29,11 +29,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) {
-        final User appUser = userRepository.findByUserName(username);
-        if (appUser == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        return new AppUserPrincipal(appUser);
+        final User appUser = userRepository.findByUserName(username).orElseThrow(() ->
+                new UsernameNotFoundException("User not found with username: " + username)
+        );
+        return UserPrincipal.create(appUser);
     }
 
+    public UserDetails loadUserById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("User not found for id: " + id)
+        );
+
+        return UserPrincipal.create(user);
+    }
 }

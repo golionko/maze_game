@@ -4,6 +4,8 @@ package com.game.maze.persist.repository;
 import com.game.maze.persist.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUserName(String username);
+    Optional<User> findByUserName(String username);
 }
