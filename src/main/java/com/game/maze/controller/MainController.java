@@ -1,9 +1,8 @@
 package com.game.maze.controller;
 
 import com.game.maze.model.view.UserView;
-import com.game.maze.persist.entity.User;
 import com.game.maze.persist.repository.AvatarRepository;
-import com.game.maze.security.AppUserPrincipal;
+import com.game.maze.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,9 +22,9 @@ public class MainController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserView userView = new UserView();
         if (principal instanceof UserDetails) {
-            User user = ((AppUserPrincipal) principal).getAppUser();
+            UserPrincipal user = ((UserPrincipal) principal);
             userView.setId(user.getId());
-            userView.setName(user.getUserName());
+            userView.setName(user.getUsername());
             userView.setAvatars(avatarRepository.findAllByUserId(user.getId()));
             model.addAttribute("user",userView);
         }
