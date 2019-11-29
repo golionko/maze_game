@@ -3,10 +3,10 @@ package com.game.maze.service;
 import com.game.maze.helper.LabyrinthHelper;
 import com.game.maze.model.Direction;
 import com.game.maze.model.LabyrinthRoomColor;
+import com.game.maze.model.MazeStats;
 import com.game.maze.persist.entity.Labyrinth;
 import com.game.maze.persist.entity.LabyrinthRoom;
-import com.game.maze.persist.repository.LabyrinthRepository;
-import com.game.maze.persist.repository.LabyrinthRoomRepository;
+import com.game.maze.persist.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +20,18 @@ public class LabyrinthService {
 
     private final LabyrinthRepository labyrinthRepository;
     private final LabyrinthRoomRepository labyrinthRoomRepository;
+    private final AvatarRepository avatarRepository;
+    private final ItemRepository itemRepository;
+    private final CreatureRepository creatureRepository;
+
+    public MazeStats getMazeStats(){
+        MazeStats mazeStats = new MazeStats();
+        mazeStats.setRooms(labyrinthRoomRepository.findNumberOfRooms());
+        mazeStats.setPlayers(avatarRepository.findNumberOfAvatars());
+        mazeStats.setItems(itemRepository.findNumberOfItems());
+        mazeStats.setMonsters(creatureRepository.findNumberOfCreatures());
+        return mazeStats;
+    }
 
     @Transactional
     public Labyrinth createLabyrinth(long size) {
