@@ -11,6 +11,7 @@ public class UserSummary {
     private Long id;
     private String username;
     private String image = "https://pbs.twimg.com/profile_images/626949233/SquareCat.jpg";
+    private Long avatarId;
 
     public UserSummary(Long id, String username) {
         this.id = id;
